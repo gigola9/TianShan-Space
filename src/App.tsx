@@ -14,10 +14,12 @@ export default function App() {
   const [language, setLanguage] = useState<Language>('ge'); // Default to Georgian as they are based in Georgia, but easily toggleable
   const [activeSection, setActiveSection] = useState<string>('home');
   const [estimatorPrefill, setEstimatorPrefill] = useState<string>('');
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
-  // Handle intersection/scroll mapping to highlight navbar tabs dynamically
+  // Handle intersection/scroll mapping to highlight navbar tabs dynamically and track progress
   useEffect(() => {
     const handleScroll = () => {
+      // 1. Navbar section mapping
       const sections = ['home', 'services', 'portfolio', 'estimator', 'team'];
       const scrollPosition = window.scrollY + 120; // safe threshold offset
 
@@ -31,6 +33,15 @@ export default function App() {
             break;
           }
         }
+      }
+
+      // 2. Scroll percentage tracking
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+      } else {
+        setScrollProgress(0);
       }
     };
 
@@ -70,6 +81,13 @@ export default function App() {
   return (
     <div className="bg-slate-950 min-h-screen text-slate-100 selection:bg-sky-500/20 selection:text-sky-300 font-sans antialiased overflow-x-hidden">
       
+      {/* Sleek Horizontal Scroll Progress Bar */}
+      <div 
+        id="scroll-progress-bar"
+        className="fixed top-0 left-0 h-[3px] bg-artistic-primary z-[9999] transition-all duration-100 ease-out shadow-[0_1px_8px_rgba(42,82,190,0.8)]"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* Absolute top grid background texture */}
       <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-indigo-950/20 to-transparent pointer-events-none z-0" />
 
