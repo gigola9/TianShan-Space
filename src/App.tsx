@@ -1,0 +1,159 @@
+import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Portfolio from './components/Portfolio';
+import ProjectEstimator from './components/ProjectEstimator';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import { Language } from './types';
+import { testimonials } from './data';
+import { Quote } from 'lucide-react';
+
+export default function App() {
+  const [language, setLanguage] = useState<Language>('ge'); // Default to Georgian as they are based in Georgia, but easily toggleable
+  const [activeSection, setActiveSection] = useState<string>('home');
+  const [estimatorPrefill, setEstimatorPrefill] = useState<string>('');
+
+  // Handle intersection/scroll mapping to highlight navbar tabs dynamically
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'services', 'portfolio', 'estimator', 'team'];
+      const scrollPosition = window.scrollY + 120; // safe threshold offset
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleEstimatorDraftSubmit = (draft: string) => {
+    setEstimatorPrefill(draft);
+    
+    // Smooth scroll down to contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const headerOffset = 80;
+      const elementPosition = contactSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  return (
+    <div className="bg-slate-950 min-h-screen text-slate-100 selection:bg-sky-500/20 selection:text-sky-300 font-sans antialiased overflow-x-hidden">
+      
+      {/* Absolute top grid background texture */}
+      <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-indigo-950/20 to-transparent pointer-events-none z-0" />
+
+      {/* Header element */}
+      <Header
+        language={language}
+        setLanguage={setLanguage}
+        activeSection={activeSection}
+      />
+
+      {/* Main landing sections */}
+      <main className="relative z-10 w-full">
+        
+        {/* HERO SECTION */}
+        <Hero
+          language={language}
+          onExplorePortfolio={() => scrollToSection('portfolio')}
+          onExploreEstimator={() => scrollToSection('estimator')}
+        />
+
+        {/* SERVICES SECTION */}
+        <Services language={language} />
+
+        {/* PORTFOLIO SHOWCASE SECTION */}
+        <Portfolio language={language} />
+
+        {/* PROJECT ESTIMATOR / PRICING SECTION */}
+        <ProjectEstimator
+          language={language}
+          onEstimatorSubmit={handleEstimatorDraftSubmit}
+        />
+
+        {/* TESTIMONIAL FEATURE HIGHLIGHT */}
+        <section className="py-24 bg-slate-950 border-t border-white/5 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(99,102,241,0.02)_0%,transparent_50%50%)]" />
+          <div className="max-w-5xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-12">
+              <Quote className="w-8 h-8 text-sky-400 mx-auto opacity-40 animate-pulse mb-3" />
+              <h3 className="text-xl sm:text-2xl font-sans tracking-tight font-extrabold text-white">
+                {language === 'en' ? 'Trusted by Dynamic Founders' : 'დამფუძნებლები ჩვენზე'}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {testimonials.map((test) => (
+                <div
+                  key={test.id}
+                  className="bg-slate-900/40 border border-white/5 rounded-2xl p-6 sm:p-8 flex flex-col justify-between"
+                  id={`testimonial-${test.id}`}
+                >
+                  <p className="text-xs sm:text-sm text-slate-350 leading-relaxed italic mb-6">
+                    "{test.text[language]}"
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={test.avatar}
+                      alt={test.name[language]}
+                      referrerPolicy="no-referrer"
+                      className="w-10 h-10 rounded-full object-cover border border-white/10"
+                    />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">{test.name[language]}</h4>
+                      <p className="text-[10px] text-slate-500 font-medium">
+                        {test.role[language]} @ <span className="text-sky-400 font-semibold">{test.company}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FOUNDERS & CONTACT BRIEF DISCOVERY FORM */}
+        <Contact
+          language={language}
+          prefilledMessage={estimatorPrefill}
+        />
+
+      </main>
+
+      {/* FOOTER SECTION */}
+      <Footer language={language} />
+
+    </div>
+  );
+}

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;650;700;900&family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@550;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-artistic-bg: #0A0A0A;
+  --color-artistic-primary: #2A52BE;
+  --color-artistic-text: #F5F5F4;
+  --color-artistic-muted: rgba(245, 245, 244, 0.5);
+  --color-artistic-border: rgba(245, 245, 244, 0.1);
+  --color-artistic-card: #121212;
+  --color-artistic-card-alt: #1A1A1A;
+}
+
+/* Custom CSS Scrollbar and visual animations */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,5,0.08);
+  border-radius: 99px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 6s ease infinite;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "TianShan Space",
+  "description": "Modern software development and UI/UX design agency showcasing high-performance web, mobile, and enterprise digital solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
