@@ -1,4 +1,5 @@
 import { Globe, Smartphone, Cpu, Paintbrush, Check } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Language } from '../types';
 import { services, dictionary } from '../data';
 
@@ -30,7 +31,14 @@ export default function Services({ language }: ServicesProps) {
     >
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20" id="services-header-container">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto mb-20"
+          id="services-header-container"
+        >
           <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-artistic-primary font-black block mb-4">
             {dictionary.servicesHeader[language]}
           </span>
@@ -41,13 +49,17 @@ export default function Services({ language }: ServicesProps) {
           <p className="text-[#F5F5F4]/60 text-sm sm:text-base leading-relaxed">
             {dictionary.servicesSubheader[language]}
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid with beautiful sharp borders */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8" id="services-grid-list">
-          {services.map((service) => (
-            <div
+          {services.map((service, index) => (
+            <motion.div
               key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
               className="group relative bg-[#121212] border border-artistic-border rounded-none p-8 hover:border-artistic-primary transition-all duration-500 hover:shadow-2xl hover:shadow-black block"
               id={`service-card-${service.id}`}
             >
@@ -76,7 +88,7 @@ export default function Services({ language }: ServicesProps) {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

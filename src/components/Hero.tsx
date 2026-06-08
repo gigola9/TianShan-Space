@@ -1,4 +1,5 @@
 import { ArrowRight, Sparkles, Code2, Heart, Award, ShieldCheck } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Language } from '../types';
 import { dictionary } from '../data';
 
@@ -28,7 +29,13 @@ export default function Hero({ language, onExplorePortfolio, onExploreEstimator 
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Text Area */}
-        <div className="lg:col-span-7 flex flex-col items-start pr-0 lg:pr-8" id="hero-intro-container">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+          className="lg:col-span-7 flex flex-col items-start pr-0 lg:pr-8"
+          id="hero-intro-container"
+        >
           {/* Active status coordinate badge */}
           <div className="inline-flex items-center gap-3 border border-artistic-border py-1.5 px-4 rounded mb-8 bg-black/40">
             <span className="flex h-1.5 w-1.5 relative">
@@ -75,10 +82,16 @@ export default function Hero({ language, onExplorePortfolio, onExploreEstimator 
               {dictionary.navPortfolio[language]}
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Visual Architectural Geometric Sculpture Area */}
-        <div className="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0" id="hero-graphic-panel">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.35 }}
+          className="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0"
+          id="hero-graphic-panel"
+        >
           <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px] flex items-center justify-center">
             {/* Outer wireframe container */}
             <div className="absolute inset-0 border border-artistic-border rounded p-4 flex items-center justify-center bg-black/20 backdrop-blur-3xl">
@@ -131,7 +144,7 @@ export default function Hero({ language, onExplorePortfolio, onExploreEstimator 
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
