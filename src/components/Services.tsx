@@ -51,7 +51,7 @@ export default function Services({ language }: ServicesProps) {
           </p>
         </motion.div>
 
-        {/* Services Grid with beautiful sharp borders */}
+        {/* Services Grid with beautiful sleek, premium cards instead of brutalist shapes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8" id="services-grid-list">
           {services.map((service, index) => (
             <motion.div
@@ -60,29 +60,35 @@ export default function Services({ language }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
-              className="group relative bg-[#121212] border border-artistic-border rounded-none p-8 hover:border-artistic-primary transition-all duration-500 hover:shadow-2xl hover:shadow-black block"
+              className="group relative bg-[#121212]/85 hover:bg-[#161616] border border-white/[0.06] hover:border-artistic-primary/45 rounded-2xl p-8 transition-all duration-500 hover:shadow-[0_15px_30px_rgba(0,0,0,0.6)] hover:-translate-y-1 block overflow-hidden"
               id={`service-card-${service.id}`}
             >
+              {/* Soft radial glow flare on hover */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(42,82,190,0.08),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl" />
+              
+              {/* Linear shine highlight on the top edge */}
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" />
+
               <div className="flex flex-col sm:flex-row items-start gap-6 relative z-10">
-                {/* Minimalist icon enclosure with strict coordinates */}
-                <div className="flex items-center justify-center w-12 h-12 rounded-none bg-black border border-artistic-border group-hover:border-artistic-primary transition-all duration-500 shrink-0">
+                {/* Premium circular icon dock with warm ambient color */}
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-artistic-primary/8 border border-artistic-primary/15 group-hover:border-artistic-primary/40 group-hover:bg-artistic-primary/15 transition-all duration-500 shrink-0 shadow-lg shadow-black/40">
                   {renderIcon(service.iconName)}
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-lg font-sans font-extrabold text-[#F5F5F4] mb-3 group-hover:text-artistic-primary transition-colors duration-300 uppercase tracking-wide">
+                  <h3 className="text-lg font-sans font-black text-[#F5F5F4] mb-3 group-hover:text-artistic-primary transition-colors duration-300 uppercase tracking-wider">
                     {service.title[language]}
                   </h3>
-                  <p className="text-[#F5F5F4]/60 text-sm leading-relaxed mb-6 font-normal">
+                  <p className="text-[#F5F5F4]/60 text-[13.5px] leading-relaxed mb-6 font-normal">
                     {service.description[language]}
                   </p>
 
-                  {/* Bullet Tech List */}
-                  <ul className="grid grid-cols-1 gap-2">
+                  {/* Bullet Tech List with refined checkmarks */}
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-white/[0.04]">
                     {service.features[language].map((bullet, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-xs text-[#F5F5F4]/80">
-                        <div className="w-1.5 h-1.5 bg-artistic-primary shrink-0"></div>
-                        <span className="font-semibold uppercase tracking-wider text-[10px] text-[#F5F5F4]/70">{bullet}</span>
+                      <li key={idx} className="flex items-center gap-2.5 text-xs text-[#F5F5F4]/80">
+                        <Check className="w-3.5 h-3.5 text-artistic-primary/70 shrink-0" />
+                        <span className="font-mono tracking-wide text-[10px] text-[#F5F5F4]/75 capitalize">{bullet}</span>
                       </li>
                     ))}
                   </ul>
