@@ -112,11 +112,13 @@ export default function App() {
     <div className="bg-slate-950 min-h-screen text-slate-100 selection:bg-sky-500/20 selection:text-sky-300 font-sans antialiased overflow-x-hidden">
       
       {/* Sleek Horizontal Scroll Progress Bar */}
-      <div 
-        id="scroll-progress-bar"
-        className="fixed top-0 left-0 h-[3px] bg-artistic-primary z-[9999] transition-all duration-100 ease-out shadow-[0_1px_8px_rgba(42,82,190,0.8)]"
-        style={{ width: `${scrollProgress}%` }}
-      />
+      {!isBlogArchiveOpen && (
+        <div 
+          id="scroll-progress-bar"
+          className="fixed top-0 left-0 h-[3px] bg-artistic-primary z-[9999] transition-all duration-100 ease-out shadow-[0_1px_8px_rgba(42,82,190,0.8)]"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      )}
 
       {/* Absolute top grid background texture */}
       <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-indigo-950/20 to-transparent pointer-events-none z-0" />
