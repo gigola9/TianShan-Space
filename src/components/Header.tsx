@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Languages, Menu, X, Rocket, Compass, Layers, Cpu, Users, PhoneCall } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Language } from '../types';
 import { dictionary } from '../data';
 
@@ -25,7 +25,7 @@ export default function Header({ language, setLanguage, activeSection }: HeaderP
     setIsMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 80;
+      const headerOffset = 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
       window.scrollTo({
@@ -36,161 +36,138 @@ export default function Header({ language, setLanguage, activeSection }: HeaderP
   };
 
   const navItems = [
-    { id: 'home', label: dictionary.navHome[language], icon: Compass },
-    { id: 'services', label: dictionary.navServices[language], icon: Layers },
-    { id: 'portfolio', label: dictionary.navPortfolio[language], icon: Cpu },
-    { id: 'estimator', label: dictionary.navEstimator[language], icon: Rocket },
-    { id: 'team', label: dictionary.navTeam[language], icon: Users },
+    { id: 'home', label: dictionary.navHome[language] },
+    { id: 'services', label: dictionary.navServices[language] },
+    { id: 'portfolio', label: dictionary.navPortfolio[language] },
+    { id: 'estimator', label: dictionary.navEstimator[language] },
+    { id: 'team', label: dictionary.navTeam[language] },
   ];
 
   return (
     <header
       id="header-navigation"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-artistic-border py-5 shadow-2xl shadow-black/80'
-          : 'bg-transparent py-7 border-b border-white/5'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 md:py-6 pointer-events-none transition-all duration-500"
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Sleek Minimalist Logo representing TianShan Space */}
+      <div
+        className={`w-full max-w-5xl pointer-events-auto rounded-full border transition-all duration-500 flex items-center justify-between px-6 py-3 md:py-3.5 ${
+          isScrolled
+            ? 'bg-[#0E0E0E]/80 backdrop-blur-xl border-[#2A52BE]/15 shadow-[0_12px_40px_rgba(0,0,0,0.85)]'
+            : 'bg-[#121212]/40 backdrop-blur-md border-white/[0.06]'
+        }`}
+      >
+        {/* Brand Logo representing TianShan Space */}
         <button
           onClick={() => scrollTo('home')}
-          className="flex items-center gap-3.5 group text-left cursor-pointer focus:outline-none"
+          className="flex items-center gap-0.5 group text-left cursor-pointer focus:outline-none"
           id="nav-logo-btn"
         >
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-artistic-primary group-hover:scale-105 transition-all duration-500 shadow-md">
-            <div className="absolute -inset-1 bg-artistic-primary/20 rounded-full blur group-hover:opacity-100 opacity-60 transition duration-700"></div>
-          </div>
-          <div>
-            <span className="font-sans font-black tracking-widest text-[#F5F5F4] text-base block group-hover:text-artistic-primary transition-colors duration-300">
-              TIANSHAN
-            </span>
-            <span className="font-mono text-[9px] tracking-[0.45em] text-[#F5F5F4]/60 block -mt-1 uppercase font-semibold group-hover:text-white transition-colors duration-300">
-              SPACE
-            </span>
-          </div>
+          <span className="font-sans font-extrabold tracking-tight text-[#F5F5F4] text-[15px] sm:text-[17px] group-hover:text-artistic-primary transition-colors duration-300">
+            TianShan Space
+          </span>
+          <span className="text-artistic-primary font-sans font-black text-[15px] sm:text-[17px] animate-pulse">.</span>
         </button>
 
-        {/* Desktop Navigation with high contrast raw styling */}
-        <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-widest">
+        {/* Desktop Navigation with high contrast elegant styling */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-[13px] font-medium tracking-tight">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`transition-colors duration-300 relative focus:outline-none cursor-pointer ${
+                className={`transition-all duration-300 relative py-1 focus:outline-none cursor-pointer ${
                   isActive
-                    ? 'text-artistic-primary font-black'
-                    : 'text-[#F5F5F4]/70 hover:text-artistic-primary'
+                    ? 'text-[#F5F5F4] font-semibold'
+                    : 'text-[#F5F5F4]/60 hover:text-[#F5F5F4]'
                 }`}
                 id={`nav-item-${item.id}`}
               >
-                {item.label}
+                <span>{item.label}</span>
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-artistic-primary" />
+                  <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-artistic-primary rounded-full" />
                 )}
               </button>
             );
           })}
         </nav>
 
-        {/* Right side actions - flat high aesthetic language switches */}
-        <div className="hidden md:flex items-center gap-6">
-          {/* Dual-Language Toggle */}
-          <div className="flex items-center border border-artistic-border rounded overflow-hidden">
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-3 py-1 text-[9px] font-mono tracking-widest font-bold transition-all duration-300 focus:outline-none ${
-                language === 'en'
-                  ? 'bg-artistic-primary text-[#F5F5F4]'
-                  : 'text-[#F5F5F4]/50 hover:text-[#F5F5F4]'
-              }`}
-              id="lang-toggle-en"
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('ge')}
-              className={`px-3 py-1 text-[9px] font-mono tracking-widest font-bold transition-all duration-300 focus:outline-none ${
-                language === 'ge'
-                  ? 'bg-artistic-primary text-[#F5F5F4]'
-                  : 'text-[#F5F5F4]/50 hover:text-[#F5F5F4]'
-              }`}
-              id="lang-toggle-ge"
-            >
-              GE
-            </button>
-          </div>
+        {/* Right side actions - language toggler & elegant Let's talk pill */}
+        <div className="hidden md:flex items-center gap-4">
+          {/* Compact, ultra-clean Language Toggle */}
+          <button 
+            onClick={() => setLanguage(language === 'en' ? 'ge' : 'en')}
+            className="text-[10px] font-mono font-bold tracking-wider text-[#F5F5F4]/40 hover:text-[#F5F5F4] transition-colors uppercase py-1 px-2 border border-white/[0.05] hover:border-white/15 rounded-full focus:outline-none cursor-pointer"
+            id="lang-toggle-quick"
+          >
+            {language === 'en' ? 'GE' : 'EN'}
+          </button>
 
-          {/* Quick Consultation CTA */}
+          {/* Let's talk button with a beautiful pulse effect and indicator */}
           <button
             onClick={() => scrollTo('contact')}
-            className="flex items-center gap-2 cursor-pointer bg-transparent hover:bg-artistic-primary text-[#F5F5F4] hover:text-white text-[11px] font-semibold uppercase tracking-widest px-5 py-2 rounded-full border border-artistic-border hover:border-artistic-primary transition-all duration-300 shadow-md focus:outline-none"
+            className="group flex items-center gap-2 bg-[#2D4AA6] hover:bg-[#203a8c] text-white text-[12.5px] font-medium py-2 px-5 sm:px-6 rounded-full transition-all duration-300 shadow-lg shadow-black/30 hover:shadow-black/50 focus:outline-none cursor-pointer active:scale-[0.98]"
             id="nav-consultation-btn"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-artistic-primary animate-pulse group-hover:bg-white"></div>
-            {dictionary.getInTouch[language]}
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981] animate-pulse shrink-0" />
+            <span className="font-sans font-medium tracking-tight">{language === 'en' ? "Let's talk" : "კონტაქტი"}</span>
+            <span className="text-white/60 group-hover:text-white transition-colors duration-200 ml-0.5 select-none font-sans font-medium">↗</span>
           </button>
         </div>
 
-        {/* Mobile menu and language toggle */}
-        <div className="flex xl:hidden items-center gap-3 md:hidden">
+        {/* Mobile menu and code control */}
+        <div className="flex md:hidden items-center gap-2.5">
           {/* Mobile Language Swap */}
           <button
             onClick={() => setLanguage(language === 'en' ? 'ge' : 'en')}
-            className="flex items-center gap-1 bg-slate-900/60 p-2 rounded-lg border border-white/5 text-slate-400 hover:text-white text-[10px] font-semibold focus:outline-none"
+            className="text-[10px] font-mono font-bold text-[#F5F5F4]/50 hover:text-white py-1 px-2.5 border border-white/10 rounded-full focus:outline-none cursor-pointer"
             id="mobile-lang-btn"
           >
-            <Languages className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
-            <span className="font-mono">{language === 'en' ? 'GE' : 'EN'}</span>
+            {language === 'en' ? 'GE' : 'EN'}
           </button>
 
-          {/* Mobile Trigger */}
+          {/* Mobile Hamburguer Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-white border border-white/5 focus:outline-none"
+            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 focus:outline-none cursor-pointer"
             id="mobile-menu-trigger"
           >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Slideout */}
+      {/* Mobile Menu Dropdown with matched floating rounded-2xl look */}
       {isMobileMenuOpen && (
         <div
           id="mobile-navbar-menu"
-          className="md:hidden absolute top-full left-0 right-0 bg-slate-950/95 backdrop-blur-2xl border-b border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.8)] py-6 px-6 animate-in slide-in-from-top duration-300"
+          className="md:hidden absolute top-[calc(100%+8px)] left-4 right-4 bg-[#0E0E0E]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.85)] rounded-2xl py-5 px-6 animate-in slide-in-from-top-4 duration-300 pointer-events-auto"
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             {navItems.map((item) => {
-              const Icon = item.icon;
+              const isActive = activeSection === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all duration-300 text-left focus:outline-none ${
-                    activeSection === item.id
-                      ? 'bg-gradient-to-r from-sky-500/10 to-indigo-500/10 text-sky-300 border-l-2 border-sky-400 pl-3.5'
+                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-300 text-left focus:outline-none cursor-pointer ${
+                    isActive
+                      ? 'bg-artistic-primary/10 text-artistic-primary border-r-2 border-artistic-primary'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                   id={`mobile-nav-${item.id}`}
                 >
-                  <Icon className="w-4 h-4 text-sky-400" />
-                  {item.label}
+                  <span>{item.label}</span>
                 </button>
               );
             })}
-            <hr className="border-white/5 my-2" />
+            <hr className="border-white/5 my-1" />
             <button
               onClick={() => scrollTo('contact')}
-              className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-indigo-600 to-sky-500 text-white text-xs font-bold tracking-wider py-4 rounded-xl shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition-transform duration-100"
+              className="flex items-center justify-center gap-2.5 w-full bg-[#2D4AA6] text-white text-xs font-bold uppercase tracking-widest py-3.5 rounded-full shadow-lg shadow-black/20 active:scale-[0.98] transition-transform duration-100 cursor-pointer"
               id="mobile-nav-cta"
             >
-              <PhoneCall className="w-4 h-4" />
-              {dictionary.getInTouch[language]}
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981] animate-pulse" />
+              <span>{language === 'en' ? "Let's talk ↗" : "კონტაქტი ↗"}</span>
             </button>
           </div>
         </div>
