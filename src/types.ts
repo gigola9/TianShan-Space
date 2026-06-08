@@ -34,3 +34,21 @@ export interface Metric {
   label: Record<Language, string>;
   description: Record<Language, string>;
 }
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: Record<Language, string>;
+  excerpt: Record<Language, string>;
+  content: Record<Language, string>[]; // Array of content blocks or paragraphs for clean dual-language reading
+  category: 'design' | 'dev' | 'insights';
+  categoryLabel: Record<Language, string>;
+  readTime: Record<Language, string>;
+  image: string;
+  publishedDate: Record<Language, string>;
+  author: {
+    name: Record<Language, string>;
+    avatar: string;
+    role: Record<Language, string>;
+  };
+}

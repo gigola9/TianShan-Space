@@ -68,6 +68,12 @@ export default function Footer({ language }: FooterProps) {
           >
             {dictionary.navEstimator[language]}
           </button>
+          <button
+            onClick={() => scrollToSection('blog')}
+            className="text-[10px] text-artistic-muted hover:text-artistic-primary transition-colors cursor-pointer focus:outline-none font-mono uppercase tracking-widest font-black"
+          >
+            {dictionary.navBlog[language]}
+          </button>
         </div>
 
         {/* Copyrights */}

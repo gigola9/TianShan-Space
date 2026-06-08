@@ -7,9 +7,10 @@ interface HeaderProps {
   language: Language;
   setLanguage: (lang: Language) => void;
   activeSection: string;
+  onNavItemClick?: (id: string) => void;
 }
 
-export default function Header({ language, setLanguage, activeSection }: HeaderProps) {
+export default function Header({ language, setLanguage, activeSection, onNavItemClick }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,6 +24,9 @@ export default function Header({ language, setLanguage, activeSection }: HeaderP
 
   const scrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
+    if (onNavItemClick) {
+      onNavItemClick(id);
+    }
     const element = document.getElementById(id);
     if (element) {
       const headerOffset = 90;
@@ -41,6 +45,7 @@ export default function Header({ language, setLanguage, activeSection }: HeaderP
     { id: 'portfolio', label: dictionary.navPortfolio[language] },
     { id: 'estimator', label: dictionary.navEstimator[language] },
     { id: 'team', label: dictionary.navTeam[language] },
+    { id: 'blog', label: dictionary.navBlog[language] },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import { Service, Project, Testimonial, Metric, Language } from './types';
+import { Service, Project, Testimonial, Metric, Language, BlogPost } from './types';
 
 export const dictionary: Record<string, Record<Language, string>> = {
   // Navigation
@@ -8,7 +8,21 @@ export const dictionary: Record<string, Record<Language, string>> = {
   navEstimator: { en: 'Estimator', ge: 'კალკულატორი' },
   navTeam: { en: 'Team', ge: 'გუნდი' },
   navContact: { en: 'Contact', ge: 'კონტაქტი' },
+  navBlog: { en: 'Blog', ge: 'ბლოგი' },
   getInTouch: { en: 'Get in Touch', ge: 'უფასო კონსულტაცია' },
+
+  // Blog Section
+  blogTitle: { en: 'The Studio Journal', ge: 'სტუდიის ჟურნალი' },
+  blogSubtitle: { en: 'Profound architectural insights, design systems, and software engineering write-ups from TianShan Space.', ge: 'პროგრამული ინჟინერიის, დიზაინ სისტემებისა და ბიზნეს ანალიტიკის სიღრმისეული სტატიები.' },
+  blogReadMore: { en: 'Read Full Post', ge: 'სრულად წაკითხვა' },
+  blogBack: { en: 'Return to Journal', ge: 'უკან დაბრუნება' },
+  blogShare: { en: 'Share Article', ge: 'გაზიარება' },
+  blogAll: { en: 'All Topics', ge: 'ყველა თემა' },
+  blogDesign: { en: 'Design & UX', ge: 'დიზაინი & UX' },
+  blogDev: { en: 'Development', ge: 'დეველოპმენტი' },
+  blogInsights: { en: 'Insights', ge: 'ანალიტიკა' },
+  blogPublished: { en: 'Published', ge: 'გამოქვეყნდა' },
+  blogMinutes: { en: 'min read', ge: 'წთ წაკითხვა' },
 
   // Hero Section
   heroTitleTop: { en: 'Turning Ideas Into', ge: 'იდეებს ვაქცევთ' },
@@ -282,4 +296,265 @@ export const estimateFeatures: FeatureItem[] = [
   { id: 'multilingual', name: { en: 'Multilingual Support Engine', ge: 'მრავალენოვანი სისტემა' }, cost: 250, addedWeeks: 0.5 },
   { id: 'dashboard', name: { en: 'Analytics & Statistical Plots', ge: 'ანალიტიკის და დეტალური სტატისტიკის დაფა' }, cost: 500, addedWeeks: 1.5 },
   { id: 'cms', name: { en: 'CMS Core (Admin capability to edit news/content)', ge: 'მონაცემების მართვის პანელი (ბლოგი/პროდუქტები)' }, cost: 400, addedWeeks: 1 },
+];
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: 'b1',
+    slug: 'the-kinetic-layer-escaping-static-layouts',
+    title: {
+      en: 'The Kinetic Layer: Escaping Static Layouts in Modern Product Design',
+      ge: 'კინეტიკური შრე: როგორ ვიხსნათ პროდუქტის დიზაინი სტატიკურობისგან',
+    },
+    excerpt: {
+      en: 'How subtle acceleration vectors and smooth gesture loops increase digital product retention by up to forty percent.',
+      ge: 'როგორი გავლენა აქვს მოძრაობის მიკრო-ინტერაქციებსა და ჟესტებს მომხმარებელთა ჩართულობაზე ციფრულ პროდუქტებში.',
+    },
+    content: [
+      {
+        en: "In modern application design, static screens feel incomplete. When a user interacts with a system, they don't merely expect immediate static response; they seek visual continuity. Human sight is biologically wired to track motion, speed, and continuous transitions. When transitions feel jagged or instantaneous, the cognitive load rises, making the interface feel rigid, unstable, or unresponsive.",
+        ge: "თანამედროვე აპლიკაციების დიზაინში, სტატიკური გვერდები მოძველებულად გამოიყურება. როდესაც მომხმარებელი ურთიერთქმედებს სისტემასთან, ის ელის არა მხოლოდ უსულო რეაგირებას, არამედ ვიზუალურ უწყვეტობას. ადამიანის მხედველობა ბიოლოგიურად არის მოწყობილი ისე, რომ მიჰყვეს მოძრაობას, სიჩქარესა და გლუვ გადასვლებს. როდესაც გადასვლები უხეში ან მყისიერია, იზრდება კოგნიტური დატვირთვა.",
+      },
+      {
+        en: "To resolve this, we introduce the concept of 'The Kinetic Layer'. By incorporating smooth, vector-based keyframe animations and physical-feeling spring models, we map user inputs to logical motion transitions. For instance, launching a modal is not a binary visible/hidden event. Instead, it scales upwards from the cursor origin point as a subtle spatial event, dampening dynamically as it establishes focus.",
+        ge: "ჩვენ შემოგვაქვს 'კინეტიკური შრის' კონცეფცია. გლუვი, ვექტორული და ფიზიკაზე დაფუძნებული ზამბარული (spring) მოდელებით, მომხმარებლის ინტერაქციას ლოგიკურ მოძრაობაში გარდავსახავთ. მაგალითად, მოდალური ფანჯრის გახსნა არ არის ბინარული (ჩანს/არ ჩანს) მოვლენა. ნაცვლად ამისა, იგი იზრდება კურსორის წერტილიდან, რაც სივრცულ აღქმას აუმჯობესებს.",
+      },
+      {
+        en: "Measurements on deployed platforms demonstrate that adding kinetic logic increases overall session durations by up to 40%. Users navigate naturally, discovering complex controls with higher confidence. Our design system, Aura, defines strict acceleration constants and material constants to ensure every motion across our web platforms and hybrid systems feels cohesive and intentionally sculpted.",
+        ge: "ჩვენს მიერ გაშვებული პროდუქტების ანალიზით დასტურდება, რომ კინეტიკური ლოგიკის დამატება ზრდის სესიის ხანგრძლივობას 40%-მდე. მომხმარებლები უფრო თავდაჯერებულად აკონტროლებენ რთულ ფუნქციონალს. ჩვენი დიზაინ სისტემა - Aura, მკაცრად განსაზღვრავს აჩქარებისა და მასალების მუდმივებს, რათა ყოველი ვიზუალური მოძრაობა იყოს დახვეწილი და ბუნებრივი.",
+      }
+    ],
+    category: 'design',
+    categoryLabel: {
+      en: 'Design & UX',
+      ge: 'დიზაინი & UX',
+    },
+    readTime: {
+      en: '4 min read',
+      ge: '4 წთ წასაკითხი',
+    },
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'June 4, 2026',
+      ge: '4 ივნისი, 2026',
+    },
+    author: {
+      name: { en: 'Sandro Kobakhidze', ge: 'სანდრო კობახიძე' },
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'UI Architect & Lead', ge: 'UI არქიტექტორი' },
+    }
+  },
+  {
+    id: 'b2',
+    slug: 'architecting-core-architecture-beyond-vite-defaults',
+    title: {
+      en: 'Architecting a Core Architecture: Moving Beyond Vite Defaults',
+      ge: 'პროგრამული არქიტექტურა: როგორ გავცდეთ Vite-ის სტანდარტულ ვარიანტებს',
+    },
+    excerpt: {
+      en: 'A detailed breakdown of custom lazy initialization, responsive canvas scaling, and zero-flicker state systems.',
+      ge: 'დეტალური ანალიზი მოდულური დატვირთვის, რეაგირებადი კანვასების ზომების დინამიური მართვისა და მდგომარეობების სწრაფი სინქრონიზაციის შესახებ.',
+    },
+    content: [
+      {
+        en: "Out-of-the-box build configurations serve a wide audience but rarely maximize raw execution speed for premium products. Standard setups often compile heavy logic blocks into a monolithic vendor bundle, forcing the client's browser to parse massive scripts before displaying a single pixel of useful content. This delay impacts initial load metrics and search ranking indexing.",
+        ge: "სტანდარტული ბილდის კონფიგურაციები ხშირად აერთიანებს რთულ ლოგიკურ ბლოკებს მონოლითურ ერთობლიობაში, რაც აიძულებს მომხმარებლის ბრაუზერს დაამუშაოს დიდი ზომის კოდი პირველი პიქსელის დახატვამდე. ეს შეფერხება პირდაპირ მოქმედებს საძიებო სისტემებში ოპტიმიზაციაზე (SEO) და მომხმარებლის კმაყოფილებაზე.",
+      },
+      {
+        en: "To deliver zero-flicker performance, our structural engineers divide applications into independent operational quadrants. Standard client states are loaded synchronously, while background tools (such as dynamic estimate engines, maps canvas loaders, or heavy math processors) are decoupled using lazy dynamic import chains that only execute on demand.",
+        ge: "ჩვენი ინჟინრები აპლიკაციებს ყოფენ დამოუკიდებელ მოდულებად. ძირითადი კლიენტური კომპონენტები იტვირთება სინქრონულად, ხოლო მძიმე ინსტრუმენტები (როგორიცაა პროექტის კალკულატორი, რუკები ან ვიზუალური ანალიტიკის მოდულები) გამოყოფილია და იტვირთება მხოლოდ მაშინ, როცა მომხმარებელი ამას მოითხოვს.",
+      },
+      {
+        en: "By configuring custom Rollup compilation settings inside Vite, resolving type dependencies early, and avoiding expensive re-renders with stabilized dependencies, we achieve first-contentful-paint (FCP) metrics of under 0.3 seconds. This approach establishes the foundational speed necessary for high-end commerce and live tracking systems.",
+        ge: "Vite-ის შიდა Rollup-ის პარამეტრების მოდიფიცირებით, ტიპების ადრეული აღწერითა და არასაჭირო ხელახალი რენდერების (re-renders) თავიდან აცილებით, ჩვენ მივაღწიეთ პირველადი ჩატვირთვის 0.3 წამზე ნაკლებ მაჩვენებელს. ეს ქმნის საიმედო საფუძველს სწრაფი ონლაინ მაღაზიებისა და მონაცემთა რეალურ დროში მართვის სისტემებისთვის.",
+      }
+    ],
+    category: 'dev',
+    categoryLabel: {
+      en: 'Development',
+      ge: 'დეველოპმენტი',
+    },
+    readTime: {
+      en: '6 min read',
+      ge: '6 წთ წასაკითხი',
+    },
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'May 28, 2026',
+      ge: '28 მაისი, 2026',
+    },
+    author: {
+      name: { en: 'TianShan Engineer', ge: 'TianShan ინჟინერი' },
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'Full-Stack Systems Architect', ge: 'სისტემური არქიტექტორი' },
+    }
+  },
+  {
+    id: 'b3',
+    slug: 'the-evolution-of-minimalist-typography',
+    title: {
+      en: 'The Evolution of Minimalist Typography in Premium Brand Mappings',
+      ge: 'მინიმალისტური ტიპოგრაფიის ევოლუცია პრემიუმ ბრენდების ფორმირებაში',
+    },
+    excerpt: {
+      en: 'Why geometric grotesque fonts paired with monospaced metadata form the signature of elite, high-trust engineering products.',
+      ge: 'რატომ წარმოადგენს გეომეტრიული შრიფტების კავშირი მონოსპეის მეტამონაცემებთან მაღალი ნდობის მქონე ელიტარული პროდუქტების ხელწერას.',
+    },
+    content: [
+      {
+        en: "Typography is not merely text representation; it is the physical tone of voice for digital software. Historically, corporations used highly neutral sans-serifs to look uniform. However, modern high-trust labels have transitioned to carefully paired weights that balance display impact with technical precision.",
+        ge: "ტიპოგრაფია მხოლოდ ტექსტი არ არის; ის ციფრული პროდუქტის ხმაა. ისტორიულად, კომპანიები იყენებდნენ ნეიტრალურ შრიფტებს ერთფეროვნებისთვის. თუმცა, მაღალი დონის ბრენდები დღეს იყენებენ გააზრებულ წყვილებს, რომლებიც ტექნიკურ სიზუსტესა და კრეატიულობას შორის ბალანსს ინარჩუნებს.",
+      },
+      {
+        en: "Our design framework pairs geometric display grotesque fonts like Space Grotesk (characterized by sharp corners and structural proportions) with technical monospaced details like JetBrains Mono. This sets up a rhythmic division: bold, expressive headings highlight marketing statements, while fine mono-fonts anchor numbers and parameter specifications, creating a highly organized layout.",
+        ge: "ჩვენი დიზაინის ჩარჩო აჯგუფებს გეომეტრიულ სათაურებს (როგორიცაა Space Grotesk) ტექნიკურ მონოსპეის დეტალებთან (Inter-სა და JetBrains Mono-სთან ერთად). ეს უზრუნველყოფს რიტმულ დანაწილებას: მკაფიო, ექსპრესიული სათაურები გამოკვეთს მთავარ სათქმელს, ხოლო ტექნიკური მონო-დახასიათებები ასახავს რიცხვებს და პარამეტრებს.",
+      },
+      {
+        en: "This stylistic choice establishes an aura of operational excellence. It communicates to the user that every coordinate is controlled, every pixel is measured, and the underlying code is written with absolute clarity. Respecting negative space alongside meticulous letter-spacing yields a layout that commands high levels of focus and natural engagement.",
+        ge: "ეს სტილისტური არჩევანი ქმნის პროფესიონალიზმის მკაფიო აურას. ის მომხმარებელს აგრძნობინებს, რომ ყოველი პიქსელი გაზომილია, ყოველი კოორდინატი კონტროლდება და ბაზისური კოდი დაწერილია უმაღლესი სიზუსტით. უარყოფითი სივრცის მართვა და ასოებს შორის მანძილების შენარჩუნება ქმნის დიზაინს, რომელიც იპყრობს ყურადღებას სრულიად ბუნებრივად.",
+      }
+    ],
+    category: 'insights',
+    categoryLabel: {
+      en: 'Insights',
+      ge: 'ანალიტიკა',
+    },
+    readTime: {
+      en: '3 min read',
+      ge: '3 წთ წასაკითხი',
+    },
+    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'April 19, 2026',
+      ge: '19 აპრილი, 2026',
+    },
+    author: {
+      name: { en: 'Elene Gegechkori', ge: 'ელენე გეგეჭკორი' },
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'Product Strategist', ge: 'პროდუქტის სტრატეგი' },
+    }
+  },
+  {
+    id: 'b4',
+    slug: 'building-seamless-canvas-systems-webgl',
+    title: {
+      en: 'Building Seamless Canvas Systems: WebGL and ResizeObserver Tricks',
+      ge: 'კანვასის სისტემები: WebGL-ისა და ResizeObserver-ის პრაქტიკული გამოყენება',
+    },
+    excerpt: {
+      en: 'How to avoid coordinate mismatches and costly redraw loops by binding layout nodes dynamically to high-performance graphic overlays.',
+      ge: 'როგორ ავიცილოთ თავიდან კოორდინატების შეუსაბამობა და არასაჭირო გადახატვა გრაფიკული ელემენტების დინამიური მართვისას.',
+    },
+    content: [
+      {
+        en: 'Rendering interactive nodes or real-time particle structures inside standard browser frames often challenges rendering speeds. Typically, developers bind event listeners directly to the window resize actions, causing repeated layout thrashing as the browser calculates relative dimensions continuously. This causes visual stuttering or broken vectors on mobile and tablet rotations.',
+        ge: 'ინტერაქტიული გრაფიკისა და ელემენტების რენდერინგი ბრაუზერში ხშირად მოითხოვს მაღალ წარმადობას. ხშირად, დეველოპერები უშუალოდ window resize მოვლენაზე აბამენ მსმენელებს, რაც იწვევს გვერდის უხეშ გადახატვას ყოველ პიქსელზე. ეს იწვევს ვიზუალურ შეფერხებებს ან დამახინჯებულ ნახატებს მობილური მოწყობილობების შემოტრიალებისას.',
+      },
+      {
+        en: 'By integrating ResizeObserver at the container element level rather than monitoring global window bounds, we can isolate coordinate calculations. When combined with canvas buffer ratio stabilization and low-level WebGL vertex matrices, resizing becomes silky smooth. The canvas scales continuously in the background without dropping frames or triggering full-page paint refreshes.',
+        ge: 'ResizeObserver-ის გამოყენებით კონტეინერის დონეზე, გლობალური window ზომების მონიტორინგის ნაცვლად, ჩვენ შეგვიძლია კოორდინატების გამოთვლა იზოლირებულად მოვახდინოთ. WebGL კოორდინატების მატრიცებთან კომბინაციაში, ზომის ცვლილება ხდება სრულიად უწყვეტი. კანვასი იზრდება ფონურ რეჟიმში კადრების დაკარგვისა და გვერდის გადახატვის გარეშე.',
+      }
+    ],
+    category: 'dev',
+    categoryLabel: {
+      en: 'Development',
+      ge: 'დეველოპმენტი',
+    },
+    readTime: {
+      en: '5 min read',
+      ge: '5 წთ წაკითხვა',
+    },
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'March 12, 2026',
+      ge: '12 მარტი, 2026',
+    },
+    author: {
+      name: { en: 'TianShan Engineer', ge: 'TianShan ინჟინერი' },
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'Full-Stack Systems Architect', ge: 'სისტემური არქიტექტორი' },
+    }
+  },
+  {
+    id: 'b5',
+    slug: 'data-structures-for-rapid-pricing-estimators',
+    title: {
+      en: 'Optimal Data Structures for Complex Multi-Variant Pricing Estimators',
+      ge: 'მონაცემთა სტრუქტურები პროექტის მრავალკვალიფიციური კალკულატორებისთვის',
+    },
+    excerpt: {
+      en: 'How a recursive matrix of features and complexity parameters enables frictionless, instant cost approximations.',
+      ge: 'როგორ უზრუნველყოფს ფასის მოდელების მორგება მომენტალურ და ზუსტ გაანგარიშებებს ნებისმიერი ტიპის ციფრული სისტემისთვის.',
+    },
+    content: [
+      {
+        en: 'Interactive pricing engines or project scope estimators often suffer under heavy branching conditions. Traditional code templates address this with infinite nested switch-case statements or nested if-conditions, turning the system into a nightmarish web to expand or alter. A single change in pricing logic breaks downstream parameters, and types quickly decay into ambiguity.',
+        ge: 'ფასის გამოსათვლელი ინტერაქტიული კალკულატორების სისტემებში მრავალშრიანი პარამეტრები ხშირად ართულებს ადმინისტრირებას. დეველოპერები ხშირად იყენებენ დაუსრულებელ nested if-პირობებს, რაც კოდს გამოუსადეგარს ხდის. ფასის ლოგიკაში ერთი კომპონენტის ცვლილება ხშირად აფუჭებს დანარჩენ პარამეტრებს.',
+      },
+      {
+        en: 'By mapping project aspects, tiers, and add-on factors into a structured recursive feature grid, we transition calculating tasks into straightforward array operations. State management becomes fully predictable and responsive. Adding multilingual support to feature labels or changing baseline parameters can be managed seamlessly directly within the configuration file.',
+        ge: 'პროექტის ასპექტებისა და დამატებითი კომპონენტების სტრუქტურირებულ ფუნქციურ მატრიცაში გაერთიანებით, გამოთვლის ლოგიკას ჩვეულებრივ მასივის მანიპულაციად გარდავქმნით. მდგომარეობების მართვა ხდება პროგნოზირებადი და სწრაფი, ხოლო ახალი პარამეტრების ან ენების დამატება მარტივად ხდება უშუალოდ კონფიგურაციის ფაილიდან.',
+      }
+    ],
+    category: 'insights',
+    categoryLabel: {
+      en: 'Insights',
+      ge: 'ანალიტიკა',
+    },
+    readTime: {
+      en: '7 min read',
+      ge: '7 წთ წაკითხვა',
+    },
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'February 21, 2026',
+      ge: '21 თებერვალი, 2026',
+    },
+    author: {
+      name: { en: 'Elene Gegechkori', ge: 'ელენე გეგეჭკორი' },
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'Product Strategist', ge: 'პროდუქტის სტრატეგი' },
+    }
+  },
+  {
+    id: 'b6',
+    slug: 'user-retention-and-micro-transitions',
+    title: {
+      en: 'User Retention and Micro-Transitions: The Cognitive Link',
+      ge: 'კლიენტების შენარჩუნება და მიკრო-ტრანზიციები: კოგნიტური კავშირი',
+    },
+    excerpt: {
+      en: 'Studying the neurobiology of interface feedback loop speeds and their dramatic impacts on user conversion funnels.',
+      ge: 'ინტერფეისის რეაგირების სიჩქარისა და მიკრო-ანიმაციების გავლენა მომხმარებელთა კონვერსიასა და ლოიალობაზე.',
+    },
+    content: [
+      {
+        en: 'The human cognitive register operates in short millisecond envelopes. An interface response under 100 milliseconds is perceived as instantaneous. When responses exceed 300 milliseconds, users perceive a delayed interaction delay, and if they approach 1.5 seconds, attention starts to wander, impacting search intent and purchase momentum.',
+        ge: 'ადამიანის ტვინი ინტერაქციას აღიქვამს მილიწამების დიაპაზონში. 100 მილიწამზე ნაკლები რეაგირება მყისიერად აღიქმება. როდესაც რეაგირება აჭარბებს 300 მილიწამს, მომხმარებლები გრძნობენ შეფერხებას, ხოლო 1.5 წამის შემთხვევაში, იწყებენ ყურადღების გაფანტვას, რაც აფერხებს კონვერსიას.',
+      },
+      {
+        en: 'By mapping high-frequency visual feedback directly to user interactions - such as custom spring scales on button presses, glowing outline borders, and subtle staggered elements entering views - we create an immersive space. In testing circles, items using micro-transitions see up to a 28% increase in conversion over comparable static competitors.',
+        ge: 'მომხმარებელთა ქმედებებზე მყისიერი ვიზუალური პასუხის მორგებით (როგორიცაა მიკრო-ანიმაციები, საზღვრების ნათება და კომპონენტების გლუვი გამოჩენა), ჩვენ ვქმნით საოცარ კავშირს. ტესტირების შედეგად დგინდება, რომ პროდუქტები, რომლებიც იყენებენ ასეთ ინტერაქციებს, 28%-ით მეტ კონვერსიას აჩვენებენ.',
+      }
+    ],
+    category: 'design',
+    categoryLabel: {
+      en: 'Design & UX',
+      ge: 'დიზაინი & UX',
+    },
+    readTime: {
+      en: '5 min read',
+      ge: '5 წთ წაკითხვა',
+    },
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    publishedDate: {
+      en: 'January 15, 2026',
+      ge: '15 იანვარი, 2026',
+    },
+    author: {
+      name: { en: 'Sandro Kobakhidze', ge: 'სანდრო კობახიძე' },
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80',
+      role: { en: 'UI Architect & Lead', ge: 'UI არქიტექტორი' },
+    }
+  }
 ];
